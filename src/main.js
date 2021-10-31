@@ -95,7 +95,7 @@ const getElements = (path) => {
 const layersSetup = (layersOrder) => {
   const layers = layersOrder.map((layerObj, index) => ({
     id: index,
-    elements: getElements(`${layersDir}/${layerObj.name}/`),
+    elements: getElements('${layersDir}/${layerObj.name}/'),
     name:
       layerObj.options?.["displayName"] != undefined
         ? layerObj.options?.["displayName"]
