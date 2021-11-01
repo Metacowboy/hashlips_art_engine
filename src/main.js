@@ -78,6 +78,7 @@ const cleanName = (_str) => {
 };
 
 const getElements = (path) => {
+  console.log("METADEBUG_PATH:", path)
   return fs
     .readdirSync(path)
     .filter((item) => !/(^|\/)\.[^\/\.]/g.test(item))
@@ -92,10 +93,15 @@ const getElements = (path) => {
     });
 };
 
+
 const layersSetup = (layersOrder) => {
+  console.log("METADEBUG_layersDir:", layersDir)
+  console.log("METADEBUG_LAYEROBJ:", layersOrder)
+
   const layers = layersOrder.map((layerObj, index) => ({
     id: index,
-    elements: getElements('${layersDir}/${layerObj.name}/'),
+    elements: getElements(layersDir+"/"+layerObj.name+"/"),
+    //elements: getElements("${layersDir}/${layerObj.name}/"),
     name:
       layerObj.options?.["displayName"] != undefined
         ? layerObj.options?.["displayName"]
@@ -115,6 +121,27 @@ const layersSetup = (layersOrder) => {
   }));
   return layers;
 };
+
+/* DEV Solution
+const layersSetup = (layersOrder) => {
+  console.log("METADEBUG_layersDir:", layersDir)
+  console.log("METADEBUG_LAYEROBJ:", layersOrder)
+
+  const layers = layersOrder.map((layerObj, index) => ({
+        id: index,
+        // /Users/metacowboy/DEV/NODE/hashlips_art_engine/layers
+        //elements: getElements('/Users/metacowboy/DEV/NODE/hashlips_art_engine/layers/Background/'),
+        test: console.log('METAMAP', ),
+        elements: getElements('${layersDir}/${layerObj.name}/'),
+        name: layerObj.options? (layerObj.options["displayName"] != undefined ? layerObj.options["displayName"]: layerObj.name) : layerObj.name,
+        blend: layerObj.options? (layerObj.options["blend"] != undefined ? layerObj.options["blend"]: "source-over") : "source-over",
+        opacity: layerObj.options? (layerObj.options["opacity"] != undefined ? layerObj.options["opacity"]: 1) :1,
+  }));
+
+  console.log("METADEBUG_LAYERSFull:", layers)
+  return layers;
+};
+*/
 
 const saveImage = (_editionCount) => {
   fs.writeFileSync(

@@ -32,18 +32,17 @@ const layerConfigurations = [
     layersOrder: [
       { name: "Background" },
       { name: "Eyeball" },
-      { name: "Eye color" },
+      { name: "Eye_color" },
       { name: "Iris" },
       { name: "Shine" },
-      { name: "Bottom lid" },
-      { name: "Top lid" },
+      { name: "Bottom_lid" },
+      { name: "Top_lid" },
     ],
   },
 ];
-
 const shuffleLayerConfigurations = false;
 
-const debugLogs = false;
+const debugLogs = true;
 
 const format = {
   width: 512,
